@@ -15,7 +15,7 @@ cp -af awesome-terminal-fonts/patched/. ~/.fonts
 rm -rf awesome-terminal-fonts
 
 # install powerlevel9k
-git clone https://github.com/bhilburn/powerlevel9k.git 
+git clone https://github.com/bhilburn/powerlevel9k.git
 sudo mkdir -p ~/.oh-my-zsh/custom/themes/powerlevel9k
 sudo cp -af powerlevel9k/. ~/.oh-my-zsh/custom/themes/powerlevel9k
 rm -rf powerlevel9k
@@ -29,4 +29,4 @@ sudo cp -f opswork/zsh/.zshrc ~/.zshrc
 rm -rf opswork
 
 # set zsh as default shell
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
