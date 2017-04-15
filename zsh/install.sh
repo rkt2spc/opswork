@@ -1,8 +1,9 @@
 #!/bin/bash
 
-apt-get install curl
-apt-get install git
-apt-get install zsh
+sudo apt-get update
+sudo apt-get install curl
+sudo apt-get install git
+sudo apt-get install zsh
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
