@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mongodb-2.4:
+    image: mongo:2.4
+    restart: always
+    command: mongod --config /mongodb/mongod.conf
+    ports:
+      - "127.0.0.1:28000:27017"
+      - "127.0.0.1:28001:28017"
+    volumes:
+      - ~/Data/mongodb-2.4:/mongodb
+  mongodb-3.4:
+    image: mongo:3.4
+    restart: always
+    command: mongod --config /mongodb/mongod.conf
+    ports:
+      - "127.0.0.1:28100:27017"
+      - "127.0.0.1:28101:28017"
+    volumes:
+      - ~/Data/mongodb-3.4:/mongodb

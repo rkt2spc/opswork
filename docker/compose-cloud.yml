@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  mongodb-2.4:
+    build: ./mongodb-2.4
+    image: rocketspacer/mongo:2.4
+    restart: always
+    ports:
+      - "127.0.0.1:28000:27017"
+      - "127.0.0.1:28001:28017"
+    volumes:
+      - mongodb-2.4-data:/mongodb/data
+      - mongodb-2.4-log:/mongodb/log
+  mongodb-3.4:
+    build: ./mongodb-3.4
+    image: rocketspacer/mongo:3.4
+    restart: always
+    ports:
+      - "127.0.0.1:28100:27017"
+      - "127.0.0.1:28101:28017"
+    volumes:
+      - mongodb-3.4-data:/mongodb/data
+      - mongodb-3.4-log:/mongodb/log
+  
+volumes:
+  mongodb-2.4-data:
+  mongodb-2.4-log: 
+  mongodb-3.4-data:
+  mongodb-3.4-log:
