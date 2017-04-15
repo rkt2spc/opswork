@@ -14,7 +14,9 @@ cp -af awesome-terminal-fonts/patched/. ~/.fonts
 rm -rf awesome-terminal-fonts
 
 # install powerlevel9k
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+git clone https://github.com/bhilburn/powerlevel9k.git 
+cp -af powerlevel9k/. ~/.oh-my-zsh/custom/themes/powerlevel9k
+rm -rf powerlevel9k
 
 # set theme
 git clone https://github.com/rocketspacer/opswork.git
