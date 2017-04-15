@@ -18,3 +18,4 @@ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/theme
 # set theme
 git clone https://github.com/rocketspacer/opswork.git
 cp -i opswork/zsh/.zshrc ~/.zshrc
+rm -r opswork
