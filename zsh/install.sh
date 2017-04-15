@@ -16,8 +16,8 @@ rm -rf awesome-terminal-fonts
 
 # install powerlevel9k
 git clone https://github.com/bhilburn/powerlevel9k.git 
-mkdir -p ~/.oh-my-zsh/custom/themes/powerlevel9k
-cp -af powerlevel9k/. ~/.oh-my-zsh/custom/themes/powerlevel9k
+sudo mkdir -p ~/.oh-my-zsh/custom/themes/powerlevel9k
+sudo cp -af powerlevel9k/. ~/.oh-my-zsh/custom/themes/powerlevel9k
 rm -rf powerlevel9k
 
 # set theme
@@ -25,5 +25,8 @@ if [ ! -d opswork ]
 then
   git clone https://github.com/rocketspacer/opswork.git
 fi
-cp -f opswork/zsh/.zshrc ~/.zshrc
+sudo cp -f opswork/zsh/.zshrc ~/.zshrc
 rm -rf opswork
+
+# set zsh as default shell
+chsh -s $(which zsh)
