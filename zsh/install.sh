@@ -20,12 +20,17 @@ sudo mkdir -p ~/.oh-my-zsh/custom/themes/powerlevel9k
 sudo cp -af powerlevel9k/. ~/.oh-my-zsh/custom/themes/powerlevel9k
 rm -rf powerlevel9k
 
+# install plugins
+git clone https://github.com/zsh-users/zsh-completions.git ~/.oh-my-zsh/custom/plugins/zsh-completions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
 # set theme
 if [ ! -d opswork ]
 then
   git clone https://github.com/rocketspacer/opswork.git
 fi
 sudo cp -f opswork/zsh/.zshrc ~/.zshrc
+autoload -U compinit && compinit
 rm -rf opswork
 
 # set zsh as default shell
