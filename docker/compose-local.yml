@@ -15,7 +15,7 @@ services:
     restart: always
     command: mongod --config /mongodb/mongod.conf
     ports:
-      - "127.0.0.1:28100:27017"
-      - "127.0.0.1:28101:28017"
+      - "127.0.0.1:27017:27017"
+      - "127.0.0.1:28017:28017"
     volumes:
       - ~/Data/mongodb-3.4:/mongodb
