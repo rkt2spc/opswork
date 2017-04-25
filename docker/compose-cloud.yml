@@ -21,9 +21,21 @@ services:
     volumes:
       - mongodb-3.4-data:/mongodb/data
       - mongodb-3.4-log:/mongodb/log
+  postgres-9.6:
+    build: ./postgres-9.6
+    image: rocketspacer/postgres:9.6
+    restart: always
+    environment:
+      PGDATA: /postgresql/data
+    command: postgres -c config_file=/etc/postgresql.conf
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres-9.6-data:/postgresql
   
 volumes:
   mongodb-2.4-data:
   mongodb-2.4-log: 
   mongodb-3.4-data:
   mongodb-3.4-log:
+  postgres-9.6-data:
