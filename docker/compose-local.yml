@@ -23,9 +23,8 @@ services:
     image: postgres:9.6
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      # POSTGRES_PASSWORD: 123456
-      PGDATA: /postgresql
+      PGDATA: /postgresql/data
+    command: postgres -c config_file=/postgresql/postgresql.conf
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
