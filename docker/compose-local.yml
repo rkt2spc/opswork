@@ -19,3 +19,14 @@ services:
       - "127.0.0.1:28017:28017"
     volumes:
       - ~/Data/mongodb-3.4:/mongodb
+  postgres-9.6:
+    image: postgres:9.6
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      # POSTGRES_PASSWORD: 123456
+      PGDATA: /postgresql
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - ~/Data/postgres-9.6:/postgresql
