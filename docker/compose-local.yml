@@ -24,6 +24,7 @@ services:
     restart: always
     environment:
       PGDATA: /postgresql/data
+      POSTGRES_USER: postgres
     command: postgres -c config_file=/postgresql/postgresql.conf
     ports:
       - "127.0.0.1:5432:5432"
