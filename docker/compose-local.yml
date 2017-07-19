@@ -4,6 +4,7 @@ services:
   mongodb-2.4:
     image: mongo:2.4
     restart: always
+    container_name: mongodb-2.4
     command: mongod --config /mongodb/mongod.conf
     ports:
       - "127.0.0.1:28000:27017"
@@ -13,6 +14,7 @@ services:
   mongodb-3.4:
     image: mongo:3.4
     restart: always
+    container_name: mongodb-3.4
     command: mongod --config /mongodb/mongod.conf
     ports:
       - "127.0.0.1:27017:27017"
@@ -22,6 +24,7 @@ services:
   postgres-9.6:
     image: postgres:9.6
     restart: always
+    container_name: postgres-9.6
     environment:
       PGDATA: /postgresql/data
       POSTGRES_USER: postgres
@@ -30,3 +33,12 @@ services:
       - "127.0.0.1:5432:5432"
     volumes:
       - ~/Data/postgres-9.6:/postgresql
+  elasticsearch-5.1:
+    image: elasticsearch:5.1-alpine
+    restart: always
+    container_name: elasticsearch-5.1
+    ports:
+      - "127.0.0.1:9200:9200"
+      - "127.0.0.1:9300:9300"
+    volumes:
+      - ~/Data/elasticsearch-5.1:/usr/share/elasticsearch/data
