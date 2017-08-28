@@ -1,0 +1,52 @@
+version: '3'
+
+networks:
+  openapi:
+
+services:
+  openapi_as:
+    image: misfit/openapi_as
+    restart: always
+    container_name: openapi_as
+    environment:
+      MONGO_HOSTS: openapi_mongo
+      REDIS_HOST: openapi_redis
+    networks:
+      - openapi    
+    ports:
+      - 127.0.0.1:2200:2200
+  openapi_rs:
+    image: misfit/openapi_rs
+    restart: always
+    container_name: openapi_rs
+    environment:
+      OAUTH_SERVER: http://openapi_as:2200/auth
+      MONGO_HOSTS: openapi_mongo
+      REDIS_HOST: openapi_redis
+    networks:
+      - openapi
+    ports:
+      - 127.0.0.1:2100:2100
+  openapi_ss:
+    image: misfit/openapi_ss
+    command: node tasks/thirdparty-notifier.js    
+    restart: always
+    container_name: openapi_ss
+    environment:
+      MONGO_HOSTS: openapi_mongo
+    networks:
+      - openapi
+    ports:
+      - 127.0.0.1:2201:2201
+  redis:
+    image: redis
+    restart: always
+    container_name: openapi_redis
+    networks:
+      - openapi
+  mongo:
+    image: mongo
+    restart: always
+    container_name: openapi_mongo
+    networks:
+      - openapi
