@@ -1,0 +1,122 @@
+version: '3'
+
+networks:
+  misfit:
+
+services:
+  # SSO
+  # sso:
+  #   image: misfit/sso
+  #   restart: always
+  #   container_name: sso
+  #   depends_on:
+  #     - redis
+  #     - mongo
+  #   environment:
+  #     MONGO_HOSTS: misfit-mongo
+  #     REDIS_HOST: misfit-redis
+  #   networks:
+  #     - misfit
+  #   ports:
+  #     - 127.0.0.1:2200:2200
+
+  # OpenAPI_AS
+  openapi_as:
+    image: misfit/openapi-as
+    restart: always
+    container_name: openapi-as
+    depends_on:
+      - redis
+      - mongo
+    environment:
+      MONGO_HOSTS: misfit-mongo
+      REDIS_HOST: misfit-redis
+    networks:
+      - misfit    
+    ports:
+      - 127.0.0.1:2200:2200
+
+  # OpenAPI_AS_Thirdparty
+  # openapi_as_thirdparty:
+  #   image: misfit/openapi-as-thirdparty
+  #   restart: always
+  #   container_name: openapi-as-thirdparty
+  #   depends_on:
+  #     - redis
+  #     - mongo
+  #   environment:
+  #     MONGO_HOSTS: misfit-mongo
+  #     REDIS_HOST: misfit-redis
+  #   networks:
+  #     - misfit    
+  #   ports:
+  #     - 127.0.0.1:2300:2300
+
+  # OpenAPI_RS
+  openapi_rs:
+    image: misfit/openapi-rs
+    restart: always
+    container_name: openapi-rs
+    depends_on:
+      - openapi_as
+      - redis
+      - mongo
+    environment:
+      OAUTH_SERVER: http://openapi-as:2200/auth
+      MONGO_HOSTS: misfit-mongo
+      REDIS_HOST: misfit-redis
+    networks:
+      - misfit
+    ports:
+      - 127.0.0.1:2100:2100
+  
+  # OpenAPI_SS
+  # openapi_ss:
+  #   image: misfit/openapi-ss
+  #   command: pm2-docker pm2.yml --auto-exit --only openapi-ss   
+  #   restart: always
+  #   container_name: openapi-ss
+  #   depends_on:
+  #     - openapi_as
+  #     - redis
+  #     - mongo
+  #   environment:
+  #     MONGO_HOSTS: misfit-mongo
+  #   networks:
+  #     - misfit
+  #   ports:
+  #     - 127.0.0.1:2201:2201
+  
+  # Dev Portal
+  dev_portal:
+    image: misfit/dev-portal
+    restart: always
+    container_name: dev-portal
+    depends_on:
+      - redis
+      - mongo
+    environment:
+      MONGO_HOSTS: misfit-mongo
+      REDIS_HOST: misfit-redis
+    networks:
+      - misfit
+    ports:
+      - 127.0.0.1:1337:1337
+
+  # Redis
+  redis:
+    image: redis
+    restart: always
+    container_name: misfit-redis
+    networks:
+      - misfit
+    ports:
+      - 127.0.0.1:7000:6379
+  
+  # MongoDb
+  mongo:
+    image: mongo
+    restart: always
+    container_name: misfit-mongo
+    networks:
+      - misfit
