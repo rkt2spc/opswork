@@ -88,26 +88,26 @@ services:
   #     - 127.0.0.1:2201:2201
   
   # Dev Portal
-  dev_portal:
-    image: misfit/dev-portal
-    restart: always
-    container_name: dev-portal
-    depends_on:
-      - redis
-      - mongo
-    environment:
-      MONGO_HOSTS: misfit-mongo
-      REDIS_HOST: misfit-redis
-    networks:
-      - misfit
-    ports:
-      - 127.0.0.1:1337:1337
+  # dev_portal:
+  #   image: misfit/dev-portal
+  #   restart: always
+  #   container_name: dev-portal
+  #   depends_on:
+  #     - redis
+  #     - mongo
+  #   environment:
+  #     MONGO_HOSTS: misfit-mongo
+  #     REDIS_HOST: misfit-redis
+  #   networks:
+  #     - misfit
+  #   ports:
+  #     - 127.0.0.1:1337:1337
 
   # Redis
   redis:
     image: redis
     restart: always
-    container_name: misfit-redis
+    # container_name: misfit-redis
     networks:
       - misfit
     ports:
