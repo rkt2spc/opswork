@@ -1,0 +1,50 @@
+# ------------------- Deployment ------------------- #
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: sample-app
+  labels:
+    app: sample-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+      - name: sample-app
+        image: sample-app:v1
+        ports:
+        - containerPort: 1337
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+        - name: config-volume-2
+          mountPath: /etc/config2
+      volumes:
+      - name: config-volume
+        configMap:
+          name: portfolio-exception-center-dev
+      - name: config-volume-2
+        configMap:
+          name: trum-long
+
+# ------------------- Service ------------------- #
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-app-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8000
+    targetPort: 1337
+    protocol: TCP
+  selector:
+    app: sample-app
