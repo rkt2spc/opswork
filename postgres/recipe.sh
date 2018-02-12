@@ -15,7 +15,7 @@ psql \
   [-p|--port] <port>
   [-U|--username] <username>
   <database-name>
-  < <dump-file>
+  <dump-file>
 
 Sample usage:
   psql -h localhost -p 5432 -U postgres management_firmware < ~/Data/dump/dumpfile

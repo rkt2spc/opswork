@@ -1,0 +1,120 @@
+version: '3.5'
+
+networks:
+  default:
+    name: compose_local
+
+services:
+  # Redis 3.2
+  redis-3.2:
+    image: redis:3.2
+    restart: always
+    container_name: redis-3.2
+    ports:
+      - 127.0.0.1:6379:6379
+
+  # Redis 4.0
+  # redis-4.0:
+  #   image: redis:4.0
+  #   restart: always
+  #   container_name: redis-4.0
+  #   ports:
+  #     - 127.0.0.1:6379:6379
+
+  # # Mongo 2.4
+  # mongodb-2.4:
+  #   image: mongo:2.4
+  #   restart: always
+  #   container_name: mongodb-2.4
+  #   command: mongod --config /mongodb/mongod.conf
+  #   ports:
+  #     - 127.0.0.1:27020:27017
+  #   volumes:
+  #     - ~/Data/mongodb-2.4:/mongodb
+
+  # # Mongo 3.0
+  # mongodb-3.0:
+  #   image: mongo:3.0
+  #   restart: always
+  #   container_name: mongodb-3.0
+  #   command: mongod --config /mongodb/mongod.conf
+  #   ports:
+  #     - 127.0.0.1:27019:27017
+  #   volumes:
+  #     - ~/Data/mongodb-3.0:/mongodb
+
+  # # Mongo 3.2
+  # mongodb-3.2:
+  #   image: mongo:3.2
+  #   restart: always
+  #   container_name: mongodb-3.2
+  #   command: mongod --config /mongodb/mongod.conf    
+  #   ports:
+  #     - 127.0.0.1:27018:27017
+  #   volumes:
+  #     - ~/Data/mongodb-3.2:/mongodb
+
+  # Mongo 3.4
+  mongodb-3.4:
+    image: mongo:3.4
+    restart: always
+    container_name: mongodb-3.4
+    command: mongod --config /mongodb/mongod.conf
+    ports:
+      - 127.0.0.1:27017:27017
+    volumes:
+      - ~/Data/mongodb-3.4:/mongodb
+
+  # # Mongo 3.6
+  mongodb-3.6:
+    image: mongo:3.6
+    restart: always
+    container_name: mongodb-3.6
+    command: mongod --config /mongodb/mongod.conf
+    ports:
+      - 127.0.0.1:27017:27017
+    volumes:
+      - ~/Data/mongodb-3.6:/mongodb
+  
+  # Postgres 9.6
+  postgres-9.6:
+    image: postgres:9.6
+    restart: always
+    container_name: postgres-9.6
+    environment:
+      PGDATA: /postgresql/data
+      POSTGRES_USER: postgres
+    command: postgres -c config_file=/postgresql/postgresql.conf
+    ports:
+      - 127.0.0.1:5432:5432
+    volumes:
+      - ~/Data/postgres-9.6:/postgresql
+
+  # Elasticsearch 5.1
+  elasticsearch-2.4:
+    image: elasticsearch:2.4-alpine
+    restart: always
+    container_name: elasticsearch-2.4
+    ports:
+      - 127.0.0.1:9200:9200
+      - 127.0.0.1:9300:9300
+    volumes:
+      - ~/Data/elasticsearch-2.4:/usr/share/elasticsearch/data
+
+  # # Elasticsearch 5.1
+  # elasticsearch-5.1:
+  #   image: elasticsearch:5.1-alpine
+  #   restart: always
+  #   container_name: elasticsearch-5.1
+  #   ports:
+  #     - 127.0.0.1:9200:9200
+  #     - 127.0.0.1:9300:9300
+  #   volumes:
+  #     - ~/Data/elasticsearch-5.1:/usr/share/elasticsearch/data
+
+  jetbrains-license-proxy:
+    image: rocketspacer/jetbrains-license-proxy
+    restart: always
+    container_name: jetbrains-license-proxy
+    ports:
+      - 127.0.0.1:80:9000

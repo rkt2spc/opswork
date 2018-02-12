@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  # Mongo 3.0
+  mongodb-3.0:
+    image: mongo:3.0
+    restart: always
+    container_name: mongodb-3.0
+    command: mongod --config /mongodb/mongod.conf
+    ports:
+      - "127.0.0.1:27019:27017"
+    volumes:
+      - ~/Data/mongodb-3.0:/mongodb
