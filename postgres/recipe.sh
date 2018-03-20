@@ -19,3 +19,6 @@ psql \
 
 Sample usage:
   psql -h localhost -p 5432 -U postgres management_firmware < ~/Data/dump/dumpfile
+
+# Restore gzip
+gunzip -c data.gz | psql -h localhost -p 5432 -U postgres < ~/Data/dump/data.gz
