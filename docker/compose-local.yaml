@@ -28,7 +28,7 @@ services:
   #   container_name: mongodb-2.4
   #   command: mongod --config /mongodb/mongod.conf
   #   ports:
-  #     - 127.0.0.1:27020:27017
+  #     - 127.0.0.1:27017:27017
   #   volumes:
   #     - ~/Data/mongodb-2.4:/mongodb
 
@@ -39,7 +39,7 @@ services:
   #   container_name: mongodb-3.0
   #   command: mongod --config /mongodb/mongod.conf
   #   ports:
-  #     - 127.0.0.1:27019:27017
+  #     - 127.0.0.1:27017:27017
   #   volumes:
   #     - ~/Data/mongodb-3.0:/mongodb
 
@@ -50,7 +50,7 @@ services:
   #   container_name: mongodb-3.2
   #   command: mongod --config /mongodb/mongod.conf    
   #   ports:
-  #     - 127.0.0.1:27018:27017
+  #     - 127.0.0.1:27017:27017
   #   volumes:
   #     - ~/Data/mongodb-3.2:/mongodb
 
@@ -126,16 +126,16 @@ services:
   #   volumes:
   #     - ~/Data/elasticsearch-5.1:/usr/share/elasticsearch/data
 
-  # Sourcegraph 2.5.13
-  sourcegraph-2.5.13:
-    image: sourcegraph/server:2.5.13
-    restart: always
-    container_name: sourcegraph-2.5.13
-    ports:
-      - 127.0.0.1:7080:7080
-    volumes:
-      - ~/.sourcegraph/config:/etc/sourcegraph
-      - ~/.sourcegraph/data:/var/opt/sourcegraph
+  # # Sourcegraph 2.5.13
+  # sourcegraph-2.5.13:
+  #   image: sourcegraph/server:2.5.13
+  #   restart: always
+  #   container_name: sourcegraph-2.5.13
+  #   ports:
+  #     - 127.0.0.1:7080:7080
+  #   volumes:
+  #     - ~/.sourcegraph/config:/etc/sourcegraph
+  #     - ~/.sourcegraph/data:/var/opt/sourcegraph
 
   # Jetbrains license server
   # jetbrains-license-server:
