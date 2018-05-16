@@ -76,6 +76,18 @@ services:
   #   volumes:
   #     - ~/Data/mongodb-3.6:/mongodb
   
+  # MySQL 8.0
+  mysql-8.0:
+    image: mysql:8.0
+    restart: always
+    container_name: mysql-8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: nmtuan@123
+    ports:
+      - 127.0.0.1:3306:3306
+    volumes:
+      - ~/Data/mysql-8.0:/var/lib/mysql
+
   # # Postgres 9.6
   # postgres-9.6:
   #   image: postgres:9.6
