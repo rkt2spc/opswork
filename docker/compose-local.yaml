@@ -156,3 +156,19 @@ services:
   #   container_name: jetbrains-license-proxy
   #   ports:
   #     - 127.0.0.1:80:9000
+
+  # GitLab
+  gitlab:
+    image: gitlab/gitlab-ee
+    restart: always
+    hostname: gitlab.nmtuan.space
+    container_name: gitlab
+    ports:
+      - 443:443
+      - 80:80
+      - 22:22
+    volumes:
+      - ~/Data/gitlab/config:/etc/gitlab
+      - ~/Data/gitlab/logs:/var/log/gitlab
+      - ~/Data/gitlab/data:/var/opt/gitlab
+
