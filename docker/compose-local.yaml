@@ -161,12 +161,30 @@ services:
   gitlab:
     image: gitlab/gitlab-ee
     restart: always
-    hostname: gitlab.nmtuan.space
     container_name: gitlab
+    hostname: gitlab.example.com
+    links: # Change components version as you want, just make sure they're up & healthy before spinning up gitlab
+      - postgres-10.3:postgresql
+      - redis-4.0:redis
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        postgresql['enable'] = false # Disable built-in postgresql, use configured external
+        gitlab_rails['db_username'] = "postgres"
+        gitlab_rails['db_password'] = ""
+        gitlab_rails['db_host'] = "postgresql"
+        gitlab_rails['db_port'] = "5432"
+        gitlab_rails['db_database'] = "gitlab" # Need to create database before-hand
+        gitlab_rails['db_adapter'] = 'postgresql'
+        gitlab_rails['db_encoding'] = 'utf8'
+        redis['enable'] = false # Disable built-in redis, use configured external
+        gitlab_rails['redis_host'] = 'redis'
+        gitlab_rails['redis_port'] = '6379'
+        external_url 'http://gitlab.example.com:80'
+        gitlab_rails['gitlab_shell_ssh_port'] = 22
     ports:
-      - 443:443
-      - 80:80
-      - 22:22
+      - 8888:80
+      # - 443:443 # Enable if you support ssl/tls
+      # - 22:22 # Enable if you to want ssh to container (better to docker exec)
     volumes:
       - ~/Data/gitlab/config:/etc/gitlab
       - ~/Data/gitlab/logs:/var/log/gitlab
