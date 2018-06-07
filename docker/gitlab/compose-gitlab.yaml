@@ -48,11 +48,11 @@ services:
         redis['enable'] = false # Disable built-in redis, use configured external
         gitlab_rails['redis_host'] = 'redis'
         gitlab_rails['redis_port'] = '6379'
-        external_url 'http://gitlab.nmtuan.space'
+        external_url 'https://gitlab.nmtuan.space'
         gitlab_rails['gitlab_shell_ssh_port'] = 22
     ports:
-      - 8888:80
-      # - 443:443 # Enable if you support ssl/tls
+      - 80:80
+      - 443:443 # Enable if you support ssl/tls
       # - 22:22 # Enable if you to want ssh to container (better to docker exec)
     volumes:
       - ${DATA_PATH}/gitlab/config:/etc/gitlab
