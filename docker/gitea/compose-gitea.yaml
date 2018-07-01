@@ -1,0 +1,22 @@
+version: '3.5'
+
+networks:
+  default:
+    name: gitea
+
+services:
+  server:
+    image: gitea/gitea:latest
+    restart: always
+    container_name: gitea
+    environment:
+      - APP_NAME=GitRocket
+      - SECRET_KEY=cryptocat
+      - RUN_MODE=prod
+      - USER_UID=1000
+      - USER_GID=1000
+    volumes:
+      - ~/Data/gitea:/data
+    ports:
+      - 443:3000
+      - 222:22
