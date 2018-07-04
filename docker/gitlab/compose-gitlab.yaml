@@ -24,7 +24,7 @@ services:
     ports:
       - 127.0.0.1:5432:5432
     volumes:
-      - ${DATA_PATH}/postgresql:/postgresql
+      - ${DATA_PATH}/gitlab-postgres:/postgresql
 
   # GitLab
   gitlab:

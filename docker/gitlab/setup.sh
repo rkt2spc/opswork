@@ -19,7 +19,7 @@ if [ $missing_variables = "true" ]; then exit 1; fi
 
 # Creating data directories
 mkdir -p ${DATA_PATH}/gitlab/{config,data,logs}
-mkdir -p ${DATA_PATH}/postgresql/data
+mkdir -p ${DATA_PATH}/gitlab-postgres/data
 
 # Start necessary components
 docker-compose -f compose-gitlab.yaml up -d redis postgresql
