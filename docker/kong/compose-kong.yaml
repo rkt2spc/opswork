@@ -1,0 +1,48 @@
+version: '3.5'
+
+networks:
+  default:
+    name: kong
+
+services:
+  postgres:
+    image: postgres:9.6-alpine
+    restart: always
+    container_name: kong-postgres
+    environment:
+      - PGDATA=/postgresql/data
+      - POSTGRES_USER=kong
+      - POSTGRES_DB=kong
+    command: postgres -c config_file=/postgresql/postgresql.conf
+    ports:
+      - 127.0.0.1:5432:5432
+    volumes:
+      - ~/Data/kong-postgres:/postgresql
+
+  kong:
+    image: kong:0.13
+    restart: always
+    container_name: kong
+    environment:
+      - KONG_DATABASE=postgres
+      - KONG_PG_HOST=postgres
+      - KONG_PROXY_ACCESS_LOG=/dev/stdout
+      - KONG_ADMIN_ACCESS_LOG=/dev/stdout
+      - KONG_PROXY_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl
+    ports:
+      - 8000:8000
+      - 8443:8443
+      - 8001:8001
+      - 8444:8444
+
+  dashboard:
+    image: pantsel/konga:latest
+    restart: always
+    container_name: kong-dashboard
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 1337:1337
+  
